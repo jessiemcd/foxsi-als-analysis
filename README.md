@@ -1,5 +1,5 @@
 # foxsi-als-analysis
-Code written for analysis of data from FOXSI detector tests at the Advanced Light Source, mostly in IDL. 
+Code written for analysis of data from FOXSI detector tests at the Advanced Light Source, mostly in IDL. There are a few helper routines sourced from various non-FOXSI IDL libraries included here in addition to the FOXSI-specific code (documentation from the creators remains unmodified in those files).
 
 The ALS data that it is designed to work with should be downloaded, and everything is designed to run from the data directory. You can get the FOXSI ALS data from the google drive, or from the UMN DRUM Repository. 
 
