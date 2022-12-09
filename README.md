@@ -2,7 +2,7 @@
 Code written for analysis of data from FOXSI detector tests at the Advanced Light Source, mostly in IDL. There are a few helper routines sourced from various non-FOXSI IDL libraries included here in addition to the FOXSI-specific code (documentation from the creators remains unmodified in those files).
 This analysis is detailed in an SPIE paper https://doi.org/10.1117/12.2629443, as well as in Jessie Duncan's dissertation https://hdl.handle.net/11299/241752. 
 
-The ALS data that it is designed to work with should be downloaded, and everything is designed to run from the data directory. You can get the FOXSI ALS data from the google drive, or from the UMN DRUM Repository. 
+The ALS data that this code is designed to work with can be downloaded from the FOXSI google drive, or from the UMN DRUM Repository. Everything is designed to run from the same directory where the data is located. 
 
 DRUM Link: https://conservancy.umn.edu/handle/11299/228019 
 
