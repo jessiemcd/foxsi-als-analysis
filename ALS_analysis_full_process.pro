@@ -299,8 +299,9 @@ energy_ratio_imaging_new, files=event_files, erange=[17.,30.], video=1, vidtype=
 
 
 ;An example of this: makes Figure 6 from https://doi.org/10.1117/12.2629443 (showing how we can resolve beams
-;6 um apart on the detector).
-
+;6 um apart on the detector). Since it calls functions defined in energy_ratio_imaging_new.pro, you should 
+;compile that procedure first (unless you've already used it in the same IDL session). 
+.r energy_ratio_imaging_new 
 resolve_beams
 
 ;==============================================================================================================================
