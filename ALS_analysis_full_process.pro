@@ -255,7 +255,20 @@ spectra_eventwise_boutique, files=struct_files, chanthresh=1, thresholds=thresho
 ;the scan was slightly diagonal, this still allows us to explore boundary and center regions on both sides. 
 foxsi_cal_eventdata_filename_timerange, ['2019/04/19 20:59','2019/04/20 03:11'], file=event_files, new=2
 
-;To make figure:
+
+
+
+;THE FOLLOWING DEPENDS ON COYOTE IDL - NEED TO EITHER FIGURE OUT HOW TO EXTRACT THE SPECIFIC PROCEDURES NEEDED
+;OR JUST TELL PEOPLE THEY NEED TO HAVE THE COYOTE IDL LIBRARY
+
+
+;To make figure (Figure 5 from https://doi.org/10.1117/12.2629443)
+
+;Note: COYOTE IDL library is used for making the multi-panel figure. It's not needed for imaging
+;in general (the movies below don't use it), but setting nicefigure=1 in a call to the 
+;energy_ratio_imaging_new procedure will break things if the coyote library is not in your path. 
+;That library also needed to run resolve_beams.pro (see below). 
+
 ;Note: pdf output will not appear correctly when opened in Mac Preview (looks weirdly blurry).
 ;If you have this problem, save the file and open it with Adobe Reader or something.
 energy_ratio_imaging_new, files=event_files, erange=[17.,30.], video=0, nicefigure=1
@@ -283,6 +296,12 @@ energy_ratio_imaging_new, files=event_files, erange=[17.,30.], video=1, vidtype=
 ;Another note: energy_ratio_imaging_new.pro includes three functions which each make a single image from a
 ;FOXSI data file, using the three different imaging methods. These functions can be used separately from the
 ;procedure as a whole to make images at any beam position if desired. 
+
+
+;An example of this: makes Figure 6 from https://doi.org/10.1117/12.2629443 (showing how we can resolve beams
+;6 um apart on the detector).
+
+resolve_beams
 
 ;==============================================================================================================================
 
