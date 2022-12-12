@@ -82,11 +82,11 @@ thresholds = [thrn, thrn2, thrp, thrp2]
 ;peaks vs. incorporating peaks from an older peaksfile as well). 
 ;
 ;Results will be two sets of images: 
-;		channel-space spectrum (showing fits to line peak locations)
+;		channel-space spectra (showing fits to line peak locations)
 ;		channel-space vs. energy-space plots (with fits, defining gain functions)
 ;
 ;Additionally, a .sav file (boutique_cal.sav) contains newly generated gain functions 
-;for each illuminated strip. 
+;for each illuminated strip. This file will be used later to make energy-space event files.
 
 boutique_cal, singlestrip=1, secondary=1, usepeaks=0, thresholds=thresholds
 
@@ -105,7 +105,8 @@ spectra_eventwise_boutique, files=struct_files, chanthresh=1, thresholds=thresho
 energy_space_strip_spectra
 
 ;Note that a final correction to the Al-side gain was made at the spectrum-plotting stage, to place CSA 
-;(rather than single-strip) peaks at expected line locations.
+;(rather than single-strip) peaks at expected line locations. This is done in compare_spectra (see next 
+;section).
 ;==============================================================================================================================
 
 
@@ -126,7 +127,7 @@ pretty_spectra_movie, files=event_files_n, nside_on=1
 pretty_spectra, files=event_files_p
 pretty_spectra, files=event_files_n, side='nside'
 
-;To make the figure from Jessie's dissertation (or the SPIE paper). The first time you run it, run it with 
+;To make the spectra figure from Jessie's dissertation (or the SPIE paper - Figure 2). The first time you run it, run it with 
 ;edit_correction=1 - this makes the additional gain correction (based on CSA peak locations) visible. 
 ;Then, run again with edit_correction=0 once you are satisfied that the correction is good (CSA peaks correctly
 ;found) - this makes the nice figure. 
@@ -140,7 +141,7 @@ compare_spectra, edit_correction=0
 ;Event ratios analysis - what % of events are double-strip at each position?
 ;==============================================================================================================================
 
-;To make the event ratios figure from Jessie's dissertation and/or ALS SPIE paper:
+;To make the event ratios figure from Jessie's dissertation and/or ALS SPIE paper (Figure 3):
 
 ;Note: to make this figure, you need the position files corresponding to the scans, found in the FOXSI DRIVE
 ;Location: https://drive.google.com/drive/folders/1pbKWY9-Dwn16XFKUCHRApLQIOo8oZama?usp=sharing
@@ -224,7 +225,8 @@ sharing_energetics
 ;Example notebook: energy_ratio_analysis_and_figure_notebook.ipynb
 
 ;The notebook requires you to have installed numpy, matplotlib, pandas, and lmfit
-;It works with python 3.10 (after minor changes to the matplotlib imshow() "norm" command), and it worked on python 3.6 as well 
+;It was originally written for python 3.6, and now works with python 3.10 as well (after minor changes to the matplotlib imshow() 
+;"norm" command).
 
 ;==============================================================================================================================
 
@@ -233,7 +235,7 @@ sharing_energetics
 ;==============================================================================================================================
 
 ;Before starting imaging, go back to the old thresholds if you were just using the "no-threshold" thresholds to 
-;look at energy ratios. (If not, you can skip this. Though it won't hurt.)
+;look at energy ratios. (If not, you can skip this.)
 
 thrp2= 7.3 ;ADC, 3.5-sigma (from noise_counts)
 thrn2=7.9 ;ADC, 3.5-sigma (from noise_counts)
@@ -255,14 +257,7 @@ spectra_eventwise_boutique, files=struct_files, chanthresh=1, thresholds=thresho
 ;the scan was slightly diagonal, this still allows us to explore boundary and center regions on both sides. 
 foxsi_cal_eventdata_filename_timerange, ['2019/04/19 20:59','2019/04/20 03:11'], file=event_files, new=2
 
-
-
-
-;THE FOLLOWING DEPENDS ON COYOTE IDL - NEED TO EITHER FIGURE OUT HOW TO EXTRACT THE SPECIFIC PROCEDURES NEEDED
-;OR JUST TELL PEOPLE THEY NEED TO HAVE THE COYOTE IDL LIBRARY
-
-
-;To make figure (Figure 5 from https://doi.org/10.1117/12.2629443)
+;To make figure (Figure 5 from https://doi.org/10.1117/12.2629443):
 
 ;Note: COYOTE IDL library is used for making the multi-panel figure. It's not needed for imaging
 ;in general (the movies below don't use it), but setting nicefigure=1 in a call to the 
@@ -272,6 +267,8 @@ foxsi_cal_eventdata_filename_timerange, ['2019/04/19 20:59','2019/04/20 03:11'],
 ;Note: pdf output will not appear correctly when opened in Mac Preview (looks weirdly blurry).
 ;If you have this problem, save the file and open it with Adobe Reader or something.
 energy_ratio_imaging_new, files=event_files, erange=[17.,30.], video=0, nicefigure=1
+
+;To make scan movies:
 
 ;To make energy ratio based video of Pt-side scan:
 energy_ratio_imaging_new, files=event_files, erange=[17.,30.], video=1, vidtype='ratio', nicefigure=0
@@ -297,14 +294,52 @@ energy_ratio_imaging_new, files=event_files, erange=[17.,30.], video=1, vidtype=
 ;FOXSI data file, using the three different imaging methods. These functions can be used separately from the
 ;procedure as a whole to make images at any beam position if desired. 
 
-
-;An example of this: makes Figure 6 from https://doi.org/10.1117/12.2629443 (showing how we can resolve beams
+;An example of this: makes Figure 6 from SPIE paper (showing how we can resolve beams
 ;6 um apart on the detector). Since it calls functions defined in energy_ratio_imaging_new.pro, you should 
 ;compile that procedure first (unless you've already used it in the same IDL session). 
 .r energy_ratio_imaging_new 
 resolve_beams
 
 ;==============================================================================================================================
+
+;Checking for detector polarization effects
+;If detector polarization is effecting our results, we should expect to see a change in the gain of 
+;a particular strip over time. Testing this was not a conscious goal of the ALS tests, but we do have the
+;ability to evaluate it somewhat due to the scans which happened to be completed. 
+
+;==============================================================================================================================
+
+;Goes through all the scan files, and prints the counts in each illuminated strip (useful reference)
+;Additionally (and more to the point), plots energy-space spectra in the same strip at different times
+;during the L-scan, to show that the location of the observed spectral peaks does not vary in time (over
+;the course of the scan at least)
+
+polarization_check_Lscan
+
+
+;==============================================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
