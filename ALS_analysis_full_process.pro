@@ -303,13 +303,16 @@ resolve_beams
 ;==============================================================================================================================
 
 ;Checking for detector polarization effects
-;If detector polarization is effecting our results, we should expect to see a change in the gain of 
+;If detector polarization impacts our results, we should expect to see a change in the gain of 
 ;a particular strip over time. Testing this was not a conscious goal of the ALS tests, but we do have the
-;ability to evaluate it somewhat due to the scans which happened to be completed. 
+;ability to evaluate it somewhat due to the long-duration scans (detector operating continuously the 
+;entire time)
 
 ;==============================================================================================================================
 
-;Goes through all the scan files, and prints the counts in each illuminated strip (useful reference)
+;The following goes through all the scan files, and prints the counts in each illuminated strip (useful 
+;reference).
+
 ;Additionally (and more to the point), plots energy-space spectra in the same strip at different times
 ;during the L-scan, to show that the location of the observed spectral peaks does not vary in time (over
 ;the course of the scan at least)
