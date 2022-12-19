@@ -5,7 +5,7 @@
 Code written for analysis of data from FOXSI detector tests at the Advanced Light Source (ALS), mostly in IDL (one set of plots is made in Python). There are a few helper routines sourced from various non-FOXSI IDL libraries included here in addition to the FOXSI-specific code (documentation from the creators remains unmodified in those files).
 This analysis is detailed in an SPIE paper https://doi.org/10.1117/12.2629443, as well as in Jessie Duncan's dissertation https://hdl.handle.net/11299/241752. 
 
-Instructions for using all other procedures/etc. are contained in ALS_analysis_full_process.pro. It is set up so you can read the commented notes and then run things a few lines at a time, depending on which parts of the analysis process you're interested in replicating. Everything is set up to be used specifically with the fine, overnight, L-shaped scan that occured from '2019/04/19 20:59' to '2019/04/20 09:24'.
+Instructions for using all other procedures/etc. are contained in **ALS_analysis_full_process.pro**. It is set up so you can read the commented notes and then run things a few lines at a time, depending on which parts of the analysis process you're interested in replicating. Everything is set up to be used specifically with the fine, overnight, L-shaped scan that occured from '2019/04/19 20:59' to '2019/04/20 09:24'.
 
 ### Data
 
