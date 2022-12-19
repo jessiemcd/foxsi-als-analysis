@@ -5,6 +5,8 @@
 Code written for analysis of data from FOXSI detector tests at the Advanced Light Source (ALS), mostly in IDL (one set of plots is made in Python). There are a few helper routines sourced from various non-FOXSI IDL libraries included here in addition to the FOXSI-specific code (documentation from the creators remains unmodified in those files).
 This analysis is detailed in an SPIE paper https://doi.org/10.1117/12.2629443, as well as in Jessie Duncan's dissertation https://hdl.handle.net/11299/241752. 
 
+Instructions for using all other procedures/etc. are contained in ALS_analysis_full_process.pro. It is set up so you can read the commented notes and then run things a few lines at a time, depending on which parts of the analysis process you're interested in replicating. Everything is set up to be used specifically with the fine, overnight, L-shaped scan that occured from '2019/04/19 20:59' to '2019/04/20 09:24'.
+
 ### Data
 
 The ALS data that this code is designed to work with can be downloaded from the FOXSI google drive, or from the UMN DRUM Repository. Everything is designed to run from the same directory where the data is located. 
@@ -21,9 +23,7 @@ Place this FOXSI calibration template file in the directory with your data: http
 
 You will need to have the FOXSI CALSOFT and FOXSI SCIENCE codes in your IDL path (you can find these at https://github.com/foxsi/calsoft and https://github.com/foxsi/foxsi-science). 
 
-Finally, to make the figure comparing different imaging methods (Figure 5 in https://doi.org/10.1117/12.2629443), you will need the Coyote IDL Library. This is not necessary for making FOXSI images in general, it was just used to make a nice multi-panel figure. If you don't have coyote-idl yet, you can find it here: http://www.idlcoyote.com/code_tips/installcoyote.php
-
-Instructions for using all other procedures/etc. are contained in ALS_analysis_full_process.pro. It is set up so you can read the commented notes and then run things a few lines at a time, depending on which parts of the analysis process you're interested in replicating. Everything is set up to be used specifically with the fine, overnight, L-shaped scan that occured from '2019/04/19 20:59' to '2019/04/20 09:24'. 
+Finally, to make the figure comparing different imaging methods (Figure 5 in https://doi.org/10.1117/12.2629443), you will need the Coyote IDL Library. This is not necessary for making FOXSI images in general, it was just used to make a nice multi-panel figure. If you don't have coyote-idl yet, you can find it here: http://www.idlcoyote.com/code_tips/installcoyote.php 
 
 ### Note on some included IDL procedures
 
