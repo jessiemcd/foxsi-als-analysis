@@ -25,6 +25,10 @@ You will need to have the FOXSI CALSOFT and FOXSI SCIENCE codes in your IDL path
 
 Finally, to make the figure comparing different imaging methods (Figure 5 in https://doi.org/10.1117/12.2629443), you will need the Coyote IDL Library. This is not necessary for making FOXSI images in general, it was just used to make a nice multi-panel figure. If you don't have coyote-idl yet, you can find it here: http://www.idlcoyote.com/code_tips/installcoyote.php 
 
-### Note on some included IDL procedures
+### Note on some included IDL procedures NOT written by FOXSI team members
 
 **badpar.pro, lclxtrem.pro** – helpful utilities, Written by Marc W. Buie, Lowell Observatory. Included so you don't have to download the whole Buie library (here, if interested: https://www.boulder.swri.edu/~buie/idl/)
+
+**hist2d.pro** – from APL IDL library. Included so you don't have to download that whole library (here, if interested: https://fermi.jhuapl.edu/idl/). Note that I recommend NOT putting this whole library in your IDL path, as I've had a lot of name conflict issues with it. 
+
+
